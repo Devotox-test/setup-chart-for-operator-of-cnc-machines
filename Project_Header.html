@@ -1,0 +1,107 @@
+<!-- Start documentation header comment
+
+PowerMILL Setup Sheets: default template for project-level header Setup Sheet
+
+============================================================================
+Copyright 2005 Delcam plc., Birmingham, UK
+============================================================================
+
+History.
+DICC  Who When     What   
+===== === ======== =========================================================
+58636 SPD 30/11/05 Written.
+58989 SPD 15/12/05 Label the project-level notes as such.
+59245 SPD 09/01/06 Replaced PD_Date, PD_Time with project.date, project.time.
+59371 SPD 19/01/06 Changed PD_CadModel to setupsheets.model.file_path.
+60637 SPD 05/04/06 Simplified image tag markup.
+63783 CNJ 24/11/06 Change PMillLogo with CompanyLogo
+=============================================================================
+
+End documentation header comment -->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:v="urn:schemas-microsoft-com:vml" xml:lang="en" lang="en">
+
+<head>
+  <title>Проект {project}</title>
+   <link rel="stylesheet" type="text/css" href="../global/style.css" />
+</head>
+
+<body>
+  <div class="a4page">
+
+  <!-- Company logo image tag -->
+  {CompanyLogo}
+
+  <table>
+    <tr><td colspan="2" class="title">Технологическая карта PowerMILL</td></tr>
+    <tr>
+      <th>Проект</th><td>{project}</td>
+    </tr>
+
+    <tr>
+      <th>Версия PowerMILL</th><td>{version} CodeBase {codebase}</td>
+    </tr>
+    <tr>
+      <th>Тех. карта создана:</th><td>{project.date} в {project.time}</td>
+    </tr>
+  </table>
+
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="2" class="title">Данные проекта</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th>Заказчик</th>
+        <td>{project.customer}</td>
+      </tr>
+      <tr>
+        <th>Деталь</th>
+        <td>{project.partname}</td>
+      </tr>
+      <tr>
+        <th>Код детали</th>
+        <td>{project.orderno}</td>
+      </tr>
+      <tr>
+        <th>CAD модель</th>
+        <td>{setupsheets.model.file_path}</td>
+      </tr>
+
+      <tr>
+        <th>Общее время обработки поректа, ч:м:с</th>
+        <td>{PD_TotalTime}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+  <!-- Markup for the project-level image tag follows -->
+  {setupsheets.project.image_tag}
+
+
+  <table>
+    <tr>
+      <td colspan="2" class="title">Заметки по проекту</td>
+    </tr>
+    <tr>
+      <td colspan="2">{project.notes}</td>
+    </tr>
+  </table>
+
+  </div>
+</body>
+
+</html>

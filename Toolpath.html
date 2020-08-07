@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Start documentation header comment
+
+PowerMILL Setup Sheets: default template for Toolpath Setup Sheet
+
+============================================================================
+Copyright 2003 Delcam plc., Birmingham, UK
+============================================================================
+
+History.
+DICC  Who When     What   
+===== === ======== =========================================================
+48928 DKW 02/12/03 Written. A dummy, to be replaced by a real one.
+48907 DKW 04/12/03 Simplified.
+49668 DKW 28/01/04 New variables added.
+50584 DKW 24/03/04 Toolpath Image added.
+50921 DKW 26/04/04 {TP_Description} and {TP_Notes} added.
+51039 DKW 05/05/04 Rewritten. Copied from Visual Basic setup sheets utility.
+51186 DKW 26/05/04 Superseded <link> removed.
+51768 DKW 25/06/04 Modified to print fitting on A4 page.
+52546 DKW 27/08/04 Snapshot expands to fit available space.
+52714 DKW 09/09/04 Back to snapshot with absolute size specified.
+52720 DKW 14/09/04 Absolute size of snapshot adjusted.
+52761 DKW 22/09/04 Rubbish removed from history header.
+55767 SPD 26/04/05 Tidy HTML and use style sheet. Based on work done by AW.
+55886 SPD 28/04/05 Use a4page class. Other minor changes.
+55941 SPD 09/05/05 Changes, to improve the appearance of printed output.
+56041 SPD 13/05/05 Fixed some case errors in variable name strings.
+56285 SPD 02/06/05 Added VML stuff for tool image.
+56538 SPD 16/06/05 Use new parameter scheme for thicknesses.
+56650 SPD 27/06/05 Use new parameter scheme wherever possible.
+56775 SPD 05/07/05 Changed logo image.
+56844 SPD 11/07/05 Added radial_thickness and global_thickness.
+57697 SPD 14/09/05 Correct a minor typo (case inconsistency).
+57788 SPD 20/09/05 Added fields that Delcam Tooling Services find useful.
+58053 SPD 10/10/05 Start Point Reference Datum became Start Point.
+58636 SPD 30/11/05 Added the global folder to the CSS URL specification.
+59245 SPD 09/01/06 Replaced PD_Date, PD_Time with project.date, project.time.
+                   Also: tool.radius is no more.
+59371 SPD 19/01/06 Changed PD_CadModel to setupsheets.model.file_path.
+60637 SPD 05/04/06 Simplified image tag markup.
+62458 SPD 03/11/06 Moved the XML declaration to the start of the file.
+63781 CNJ 24/11/06 Change PMillLogo with CompanyLogo
+64799 SPD 19/02/07 Removed the DOCTYPE declaration, which breaks VML in IE7.
+64808 PSL 20/02/07 Added total time for toolpath, and Rapid feed rate.
+106457 STV 14/08/13 Changed tool.tip_radius to tool.TipRadius
+111034 MOM 13/03/14 Replaced deprecated parameters
+111249 MOM 28/03/14 Syntax adjustment for some parameters
+111512 MOM 03/04/14 Divide the toolpath webpage into 2 A4pages 
+111727 MOM 14/04/14 Use of metatag to emulate IE9 
+112626 MOM 29/05/14 Adjust the column widths to fit with the new fixed
+                    table layout. 
+=============================================================================
+
+End documentation header comment -->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+  <title>Toolpath ${toolpath.name}</title>
+  <link rel="stylesheet" type="text/css" href="../global/style.css" />
+</head>
+
+<body>
+
+<div class="a4page">
+
+  <!-- Company logo image tag -->
+  ${project.CompanyLogo}
+
+  <table>
+    <tr><td colspan="3" class="title">PowerMILL Setup Sheet</td></tr>
+    <tr>
+      <th>Project</th><td colspan="2">${project.Name}</td>
+    </tr>
+    <tr>
+      <th>NC Program</th><td colspan="2">${ncprogram.NameTag}</td>
+    </tr>
+    <tr>
+      <th>PowerMILL Version</th><td colspan="2">${version} CodeBase ${codebase}</td>
+    </tr>
+    <tr>
+      <th>Page Generated:</th><td colspan="2">${project.time} on ${project.date}</td>
+    </tr>
+    <tr>
+      <th>Order Number</th><td colspan="2">${project.OrderNo}</td>
+    </tr>
+    <tr>
+      <th>CAD Model</th><td colspan="2">${setupsheets.model.file_path}</td>
+    </tr>
+  </table>
+
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="4" class="title">Toolpath</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th>Name</th><td colspan="3">${stoolpath.NameTag}</td>
+      </tr>
+      <tr>
+        <th>Description</th><td colspan ="3">${toolpath.Description}</td>
+      </tr>
+      <tr>
+        <th>Strategy</th><td colspan="3">${toolpath.Strategy}</td>
+      </tr>
+      <tr>
+        <th>Tolerance</th><td>${stoolpath.tolerance}</td>
+        <th>Cutting Feed Rate</th><td>${toolpath.Feedrate.Cutting}</td>
+      </tr>
+      <tr>
+        <th>Global Thickness</th><td>${stoolpath.GlobalThickness}</td>
+        <th>Plunge Feed Rate</th><td>${toolpath.Feedrate.Plunging}</td>
+      </tr>
+      <tr>
+        <th>Radial Thickness</th><td>${stoolpath.RadialThickness}</td>
+        <th>Rapid Feed Rate</th><td>${toolpath.Feedrate.Rapid}</td>
+      </tr>
+      <tr>
+        <th>Axial Thickness</th><td>${stoolpath.AxialThickness}</td>
+        <th>Spindle</th><td>${stoolpath.Spindle}</td>
+      </tr>
+      <tr>
+        <th>Stepover</th><td>${stoolpath.TP_Stepover}</td>
+        <th>Cutting Time</th><td>${time_to_string(stoolpath.nCuttingTime,"M")}</td>
+      </tr>
+      <tr>
+        <th>Stepdown</th><td>${stoolpath.TP_Stepdown}</td>
+        <th>Total Time</th><td>${time_to_string(stoolpath.nTotalTime,"M")}</td>
+      </tr>
+      <tr>
+        <th>Block</th>
+        <td colspan="3">
+          ${block.limits.xmax-block.limits.xmin} &times;
+          ${block.limits.ymax-block.limits.ymin} &times;
+          ${block.limits.zmax-block.limits.zmin}
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <!-- Markup for the toolpath image tag follows -->
+  <div class="center">
+    {setupsheets.toolpath.image_tag}
+  </div>
+
+</div>
+
+<div class="a4page">
+
+  <!-- Commented out below is the markup to include the .gif image for the tool -->
+  <!--
+   <div class="center">
+     <img class="tool_image" src="{ToolTypeSRC}" alt="Tool {tool.type}" />
+   </div>
+  -->
+
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="4" class="title">Toolpath Limits</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td></td><th>X</th><th>Y</th><th>Z</th>
+      </tr>
+      <tr>
+        <th>Start Point</th><td>${stoolpath.Workplane.Datum.X}</td><td>${stoolpath.Workplane.Datum.Y}</td><td>${stoolpath.Workplane.Datum.Z}</td>
+      </tr>
+      <tr>
+        <th>Minimum</th><td>${stoolpath.Limit.XMin}</td><td>${stoolpath.Limit.YMin}</td><td>${stoolpath.Limit.ZMin}</td>
+      </tr>
+      <tr>
+        <th>Maximum</th><td>${stoolpath.Limit.XMax}</td><td>${stoolpath.Limit.YMax}</td><td>${stoolpath.Limit.ZMax}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="4" class="title">Tool</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th rowspan="1">Name</th><td rowspan="1">${tool.Identifier}</td>
+        <td colspan="2" rowspan="6">
+          <div class="center">
+            ${setupsheets.tool.svg}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Number</th><td>${tool.Number}</td>
+      </tr>
+      <tr>
+        <th>Type</th><td>${tool.Type}</td>
+      </tr>
+      <tr>
+        <th>Diameter</th><td>${tool.Diameter}</td>
+      </tr>
+      <tr>
+        <th>Tip radius</th><td>${tool.TipRadius}</td>
+      </tr>
+      <tr>
+        <th>Length</th><td>${tool.Length}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+
+  <table>
+    <tr>
+      <td colspan="2" class="title">Toolpath Notes</td>
+    </tr>
+    <tr>
+      <td colspan="2">${toolpath.Notes}</td>
+    </tr>
+  </table>
+
+</div>
+  
+</body>
+
+</html>

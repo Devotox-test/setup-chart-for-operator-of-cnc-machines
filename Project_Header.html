@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Start documentation header comment
+
+PowerMILL Setup Sheets: default template for project-level header Setup Sheet
+
+============================================================================
+Copyright 2005 Delcam plc., Birmingham, UK
+============================================================================
+
+History.
+DICC  Who When     What   
+===== === ======== =========================================================
+58636 SPD 30/11/05 Written.
+58989 SPD 15/12/05 Label the project-level notes as such.
+59245 SPD 09/01/06 Replaced PD_Date, PD_Time with project.date, project.time.
+59371 SPD 19/01/06 Changed PD_CadModel to setupsheets.model.file_path.
+60637 SPD 05/04/06 Simplified image tag markup.
+62458 SPD 03/11/06 Moved the XML declaration to the start of the file.
+63781 CNJ 24/11/06 Change PMillLogo with CompanyLogo
+64808 PSL 20/02/07 Added total project time.
+67496 MH  24/09/07 Removed project header.
+111034 MOM 13/03/14 Replaced deprecated parameters
+111249 MOM 28/03/14 Syntax adjustment for some parameters 
+111727 MOM 14/04/14 Use of metatag to emulate IE9
+112626 MOM 29/05/14 Adjust the column widths to fit with the new fixed
+                    table layout. 
+=============================================================================
+
+End documentation header comment -->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"/>
+  <title>Project ${project.name}</title>
+   <link rel="stylesheet" type="text/css" href="../global/style.css" />
+</head>
+
+<body>
+
+  <div class="a4page">
+
+  <!-- Company logo image tag -->
+  ${project.CompanyLogo}
+
+  <table>
+    <tr><td colspan="3" class="title">PowerMILL Setup Sheet</td></tr>
+    <tr>
+      <th>Project</th><td colspan="2">${project.Name}</td>
+    </tr>
+    <tr>
+      <th>PowerMILL Version</th><td colspan="2">${project.version} CodeBase ${project.codebase}</td>
+    </tr>
+    <tr>
+      <th>Page Generated:</th><td colspan="2">${project.time} on ${project.date}</td>
+    </tr>
+  </table>
+
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="3" class="title">Project data</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th >Customer</th>
+        <td colspan="2">${project.Customer}</td>
+      </tr>
+      <tr>
+        <th>Part Name</th>
+        <td colspan="2">${project.PartName}</td>
+      </tr>
+      <tr>
+        <th>Order Number</th>
+        <td colspan="2">${project.OrderNo}</td>
+      </tr>
+      <tr>
+        <th>CAD Model</th>
+        <td colspan="2">${setupsheets.model.file_path}</td>
+      </tr>
+      <tr>
+        <th>Total Project Time</th>
+        <td colspan="2">${time_to_string(project.nTotalTime, "M")}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+
+  <!-- Markup for the project-level image tag follows -->
+  ${setupsheets.project.image_tag}
+
+
+  <table>
+    <tr>
+      <td colspan="2" class="title">Project Notes</td>
+    </tr>
+    <tr>
+      <td colspan="2">${project.notes}</td>
+    </tr>
+  </table>
+
+  </div>
+</body>
+
+</html>

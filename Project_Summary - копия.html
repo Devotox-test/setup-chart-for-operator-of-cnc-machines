@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Start documentation header comment
+
+PowerMILL Setup Sheets: default template for project-level Summary Setup Sheet
+
+============================================================================
+Copyright 2005 Delcam plc., Birmingham, UK
+============================================================================
+
+History.
+DICC  Who When     What
+===== === ======== =========================================================
+58636 SPD 30/11/05 Written.
+59245 SPD 09/01/06 Replaced PD_Date, PD_Time with project.date, project.time.
+                   Also: tool.radius is no more.
+62458 SPD 03/11/06 Moved the XML declaration to the start of the file.
+63781 CNJ 24/11/06 Change PMillLogo with CompanyLogo
+67496 MH  24/09/07 Remove DOCTYPE
+111034 MOM 13/03/14 Replaced deprecated parameters
+111249 MOM 28/03/14 Syntax adjustment for some parameters
+111727 MOM 14/04/14 Use of metatag to emulate IE9 
+112626 MOM 29/05/14 Adjust the column widths to fit with the new fixed
+                    table layout.
+=============================================================================
+
+End documentation header comment -->
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"/>
+  <title>Project ${project.Name}: summary</title>
+  <link rel="stylesheet" type="text/css" href="../global/style.css" />
+</head>
+
+<body>
+  <div class="a4page">
+
+  <!-- Company logo image tag -->
+  ${project.CompanyLogo}
+
+  <table>
+    <tr><td colspan="3" class="title">КАРТА НАЛАДКИ</td></tr>
+    <tr>
+      <th>ШИФР ДЕТАЛИ</th><td colspan="2">${project.Name}</td>
+    </tr>
+    <tr>
+      <th>Разработал</th><td colspan="2">Скобелев Л.А.</td>
+    </tr>
+    <tr>
+      <th>Дата</th><td colspan="2">${project.date}</td>
+    </tr>
+  </table>
+
+
+  <!-- Toolpath summary table follows. -->
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="9" class="title">СВЕДЕНИЯ ОБ УПРАВЛЯЮЩЕЙ ПРОГРАММЕ</td>
+      </tr>
+      <tr>
+        <th colspan="2">Название программы</th>
+        <th colspan="2">Инструмент</th>
+	  <th colspan="1">Время</th>
+	<th colspan="2">Припуск</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <summaryrow>
+        <tr>
+          <td colspan="2" rowspan="5">${ncprogram.NameTag}</td>
+          <th rowspan="1">Фреза</th>
+          <td rowspan="1">${tool.Type}</td>
+		<td colspan="1" rowspan="5">${time_to_string(stoolpath.nCuttingTime,"M")}</td>
+		<th>XY</th><td>${stoolpath.RadialThickness}</td> 
+		<th>Z</th><td>${stoolpath.AxialThickness}</td>   
+        		</tr>
+       		 <tr>
+          			<th>Диаметр</th><td>${tool.Diameter}</td>
+       		 </tr>
+       		 <tr>
+          <th>Радиус</th><td>${tool.TipRadius}</td>
+       		       		 </tr>
+			   <tr>
+		        </tr>
+<tr>
+</tr>
+      </summaryrow>
+    </tbody>
+
+  </table>
+
+  </div>
+</body>
+
+</html>

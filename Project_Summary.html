@@ -1,0 +1,110 @@
+<!-- Start documentation header comment
+
+PowerMILL Setup Sheets: default template for project-level Summary Setup Sheet
+
+============================================================================
+Copyright 2005 Delcam plc., Birmingham, UK
+============================================================================
+
+History.
+DICC  Who When     What
+===== === ======== =========================================================
+58636 SPD 30/11/05 Written.
+59245 SPD 09/01/06 Replaced PD_Date, PD_Time with project.date, project.time.
+                   Also: tool.radius is no more.
+63783 CNJ 24/11/06 Change PMillLogo with CompanyLogo
+=============================================================================
+
+End documentation header comment -->
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:v="urn:schemas-microsoft-com:vml" xml:lang="en" lang="en">
+
+<head>
+  <title>Проект {project}: итоги</title>
+  <link rel="stylesheet" type="text/css" href="../global/style.css" />
+</head>
+
+<body>
+  <div class="a4page">
+
+  <!-- Company logo image tag -->
+  {CompanyLogo}
+
+  <table>
+    <tr><td colspan="2" class="title">Технологическая карта PowerMILL</td></tr>
+    <tr>
+      <th>Проект</th><td>{project}</td>
+    </tr>
+      <tr>
+        <th>Технолог-программист</th>
+        <td>{PD_Programmer}</td>
+      </tr>
+    <tr>
+      <th>Версия PowerMILL</th><td>{version} CodeBase {codebase}</td>
+    </tr>
+    <tr>
+      <th>Тех. карта создана:</th><td>{project.date} в {project.time}</td>
+    </tr>
+  </table>
+
+
+  <!-- Toolpath summary table follows. -->
+  <table>
+
+    <thead>
+      <tr>
+        <td colspan="5" class="title">Итоговая карта {SU_SheetNo} из {SU_MaxSheets}</td>
+      </tr>
+      <tr>
+        <th>Траектория / TAP File</th>
+        <th>NC программа</th>
+        <th>Стратегия</th>
+        <th colspan="2">Инструмент</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <summaryrow>
+        <tr>
+          <td rowspan="8">{toolpath} <br /> {TP_TapFile}</td>
+          <td rowspan="8">{ncprogram}</td>
+          <td rowspan="8">{strategy}</td>
+	  <th rowspan="1">Номер в магазине</th><th rowspan="1">{tool.number}</th>
+        </tr>
+	<tr>
+          <th>Тип</th><td>{tool.type}</td>
+        </tr>
+
+        <tr>
+          <th>Диаметр, мм</th><td>{tool.diameter}</td>
+        </tr>
+        <tr>
+          <th>Радиус на конце, мм</th><td>{tool.tip_radius}</td>
+        </tr>
+        <tr>
+          <th>Длина реж. части, мм </th><td>{tool.length}</td>
+        </tr>
+	<tr>
+           <th>Наиб. диаметр хвостовика, мм</th><td>{TS_Upper}</td>
+        </tr>
+        <tr>
+           <th>Общая длина инструмента, мм</th><td>{tool.gauge_length}</td>
+        </tr>
+        <tr>
+           <th>Вылет из патрона, мм</th><td>{MCLength}</td>
+        </tr>
+      </summaryrow>
+    </tbody>
+
+  </table>
+
+  </div>
+</body>
+
+</html>
